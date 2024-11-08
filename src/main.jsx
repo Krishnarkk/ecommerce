@@ -7,6 +7,7 @@ import Header from "./components/Header/Header.jsx";
 import HomePage from "./page/HomePage/HomePage.component.jsx";
 import productCategories from "./page/Product.categories.js";
 import SignInComponent from "./components/sign-in/SignInComponent.jsx";
+import AuthenticationContainer from "./page/Authentication/AuthenticationContainer.jsx";
 
 
 const router = createBrowserRouter([
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage  productCategories={productCategories.sections}/>,
+        element: <HomePage/>,
       },
       {
         path: "/shop",
@@ -27,9 +28,10 @@ const router = createBrowserRouter([
         element: <ShopPage />,
       },
       {
-        path: "/signin",
-        element: <SignInComponent />,
+        path: "/auth",
+        element: <AuthenticationContainer />,
       },
+   
     ],
   }
 ]);

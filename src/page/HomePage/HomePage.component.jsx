@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home-page.style.css";
 import MenuItem from "../../components/menu-item/MenuItem";
-
-const HomePage = (props) => {
+import axios from "axios";
+const HomePage = () => {
+  const [categoryData, setCategoryData] = useState([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/shop");
+        console.log(response);
+        setCategoryData(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchCategories();
+  }, []);
   return (
     <div className="home-page">
       <h1>Welcome to my Homepage</h1>
       <div className="directory-menu">
-        {props.productCategories.map((product) => (
+        {categoryData.map((product) => (
           <MenuItem product={product} key={product.id} />
         ))}
       </div>

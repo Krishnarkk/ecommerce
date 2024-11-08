@@ -2,27 +2,42 @@ import React, { useEffect, useState } from "react";
 import CollectionPreview from "../../components/collections/CollectionPreview";
 import SHOP_DATA from "./shop-data";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 const ShopPage = () => {
   const { title } = useParams();
-  const [products, setProducts] = useState(SHOP_DATA);
+  const [shops, setShops] = useState([]);
+  const [shopData, setShopData] = useState([]);
   useEffect(() => {
-    console.log(" call useefec");
+    const fetchShopData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/shop-item");
+        setShops(response.data.data.shopItems);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchShopData();
+  }, []);
+
+  useEffect(() => {
     if (title) {
-      const filteredData = products.filter(
+      const filteredData = shops.filter(
         (prodItem) => prodItem.routeName === title
       );
-      setProducts(filteredData);
+      setShopData(filteredData);
+    } else {
+      setShopData(shops);
     }
-  }, [title]);
+  }, [title, shops]);
   return (
     <div>
-      {products.length > 0 ? (
-        products.map((product) => (
-          <CollectionPreview shopData={product} key={product.id} />
+      {shopData.length > 0 ? (
+        shopData.map((shops) => (
+          <CollectionPreview shopData={shops} key={shops.id} />
         ))
       ) : (
         <div>
-          <p> Something went wrong </p>{" "}
+          <p> Something went wrong </p>
         </div>
       )}
     </div>

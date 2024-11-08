@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { forwardRef } from "react";
 
-const FormInput = ({...otherProps}) => {
+const FormInput = forwardRef(({ ...otherProps }, ref) => {
   return (
-    <input {...otherProps}/>
-  )
-}
+    <div className="form-input">
+      <input {...otherProps} ref={ref} />
+    </div>
+  );
+});
 
-export default FormInput
+export default FormInput;
