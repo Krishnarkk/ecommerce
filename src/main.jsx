@@ -5,10 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ShopPage from "./page/shop-page/ShopPage.jsx";
 import Header from "./components/Header/Header.jsx";
 import HomePage from "./page/HomePage/HomePage.component.jsx";
-import productCategories from "./page/Product.categories.js";
-import SignInComponent from "./components/sign-in/SignInComponent.jsx";
-import AuthenticationContainer from "./page/Authentication/AuthenticationContainer.jsx";
 
+import AuthenticationContainer from "./page/Authentication/AuthenticationContainer.jsx";
+import store from "./store.js";
+import {Provider} from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage/>,
+        element: <HomePage />,
       },
       {
         path: "/shop",
@@ -31,41 +31,14 @@ const router = createBrowserRouter([
         path: "/auth",
         element: <AuthenticationContainer />,
       },
-   
     ],
-  }
+  },
 ]);
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: (
-//       <>
-//         <Header />
-//         <HomePage productCategories={productCategories.sections} />
-//       </>
-//     ),
-//   },
-//   {
-//     path: "/shop",
-//     element: (
-//       <>
-//         <Header />
-//         <ShopPage />
-//       </>
-//     ),
-//   },
-//   {
-//     path: "/shop/:title",
-//     element: (
-//       <>
-//         <Header />
-//         <ShopPage />
-//       </>
-//     ),
-//   }
-// ]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

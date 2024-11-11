@@ -8,7 +8,6 @@ const HomePage = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get("http://localhost:3000/shop");
-        console.log(response);
         setCategoryData(response.data);
       } catch (err) {
         console.error(err);

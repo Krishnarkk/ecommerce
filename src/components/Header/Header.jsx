@@ -19,7 +19,7 @@ const Header = () => {
           <div className="option" onClick={handleNavigation}>
             SHOP
           </div>
-          <div className="option" onClick={()=>navigate("/signin")}>SIGN IN</div>
+          <div className="option" onClick={()=>navigate("/auth")}>SIGN IN</div>
           <div className="option">CONTACT</div>
           <Cart />
         </div>
