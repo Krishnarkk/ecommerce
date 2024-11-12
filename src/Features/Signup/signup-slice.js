@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
- 
+
 export const signUpUserAsyncThunk = createAsyncThunk(
-  "signUpUserAsyncThunk",
+  "signup/signUpUserAsyncThunk", //custom string with unique values
   async (formData, { rejectWithValue }) => {
     try {
       const resp = await fetch("http://localhost:3000/user", {
@@ -18,7 +18,7 @@ export const signUpUserAsyncThunk = createAsyncThunk(
     }
   }
 );
- 
+
 const signupSlice = createSlice({
   name: "signup",
   initialState: {
@@ -26,6 +26,7 @@ const signupSlice = createSlice({
       displayName: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
     errors: {},
     status: "idle", // idle, loading, success, failed
@@ -50,6 +51,7 @@ const signupSlice = createSlice({
           displayName: "",
           email: "",
           password: "",
+          confirmPassword: "",
         };
         state.errors = {};
       })
@@ -59,7 +61,6 @@ const signupSlice = createSlice({
       });
   },
 });
- 
+
 export const { updateFormData, setError } = signupSlice.actions;
 export default signupSlice.reducer;
- 

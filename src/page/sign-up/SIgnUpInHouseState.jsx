@@ -4,6 +4,7 @@ import CustomButton from "../../components/custom-button/CustomButton";
 import "./sign-up.scss";
 import axios from "axios";
 import { useForm, useFormState } from "react-hook-form";
+import { useDispatch } from "react-redux";
 const SignUpInHouseState = () => {
   const dispatch = useDispatch();
   const handleChange = (e) => {
